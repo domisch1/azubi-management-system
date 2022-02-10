@@ -1,3 +1,6 @@
-<section class="flex justify-center items-center h-screen w-screen">
-  <h1 class="text-3xl">Tailwind works!</h1>
+<section class="fullscreen grid-cols-12 h-screen w-screen p-4 font-main">
+  <app-navbar class="row-span-1 row-start-1 col-span-full"></app-navbar>
+  <div class="col-span-full row-start-2 row-span-full">
+    <router-outlet></router-outlet>
+  </div>
 </section>
