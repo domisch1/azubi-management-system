@@ -4,9 +4,19 @@ import { PersonalSpaceComponent } from './pages/personal-space/personal-space.co
 import { AzubiManagementComponent } from './pages/azubi-management/azubi-management.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 
+import { AddingFormComponent } from './components/adding-form/adding-form.component';
+import { AzubiViewComponent } from './components/azubi-view/azubi-view.component';
+
 const routes: Routes = [
   { path: '', component: PersonalSpaceComponent },
-  { path: 'azubis', component: AzubiManagementComponent },
+  {
+    path: 'azubis',
+    component: AzubiManagementComponent,
+    children: [
+      { path: '', component: AddingFormComponent },
+      { path: 'view/:id', component: AzubiViewComponent },
+    ],
+  },
   { path: 'calendar', component: CalendarComponent },
 ];
 
