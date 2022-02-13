@@ -14,5 +14,8 @@ export class AzubiManagementComponent implements OnInit {
     this.azubiService.azubis.forEach((azubi) => {
       this.azubis.push(azubi);
     });
+    this.azubiService.newAzubi.subscribe((azubi) => {
+      this.azubis.push(azubi);
+    });
   }
 }

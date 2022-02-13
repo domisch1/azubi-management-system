@@ -1,3 +1,25 @@
 <section class="page-container">
-  <section class="col-span-full row-span-full bg-gray-300 rounded-xl"></section>
+  <section class="col-span-full row-span-full">
+    <div class="grid grid-cols-7 grid-rows-6 h-full w-full">
+      <div class="grid items-end col-span-full row-span-1 grid-cols-7">
+        <div class="col-span-1">Montag</div>
+        <div class="col-span-1">Dienstag</div>
+        <div class="col-span-1">Mittwoch</div>
+        <div class="col-span-1">Donnerstag</div>
+        <div class="col-span-1">Freitag</div>
+        <div class="col-span-1">Samstag</div>
+        <div class="col-span-1">Sonntag</div>
+      </div>
+      <div
+        class="grid col-span-full row-span-5 grid-cols-7 grid-rows-6 border border-gray-300"
+      >
+        <div
+          class="col-span-1 row-span-1 border border-gray-300"
+          *ngFor="let day of month; let i = index"
+        >
+          {{ day.date | date }}
+        </div>
+      </div>
+    </div>
+  </section>
 </section>
