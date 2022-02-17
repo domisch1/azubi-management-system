@@ -1,0 +1,140 @@
+<form
+  class="w-full h-full"
+  #createForm="ngForm"
+  (ngSubmit)="addAzubi(createForm)"
+>
+  <h2 class="text-2xl">Azubi hinzufügen</h2>
+  <div class="mt-6 grid grid-cols-4 gap-x-4 gap-y-6">
+    <div class="input-group">
+      <label for="first-name">Vorname</label>
+      <input
+        type="text"
+        name="first-name"
+        id="first-name"
+        autocomplete="off"
+        [(ngModel)]="firstName"
+        class="input-primary"
+        required
+      />
+    </div>
+    <div class="input-group">
+      <label for="last-name">Nachname</label>
+      <input
+        type="text"
+        name="last-name"
+        id="last-name"
+        autocomplete="off"
+        [(ngModel)]="lastName"
+        class="input-primary"
+        required
+      />
+    </div>
+    <div class="input-group">
+      <label for="e-mail">E-Mail</label>
+      <input
+        type="text"
+        name="email"
+        id="e-mail"
+        autocomplete="off"
+        [(ngModel)]="email"
+        class="input-primary"
+        required
+      />
+    </div>
+    <div class="input-group">
+      <label for="phone-number">Telefonnummer</label>
+      <input
+        type="number"
+        name="phone-number"
+        id="phone-number"
+        autocomplete="off"
+        [(ngModel)]="phoneNumber"
+        class="input-primary"
+        required
+      />
+    </div>
+    <div class="input-group">
+      <label for="address">Anschrift</label>
+      <input
+        type="text"
+        name="address"
+        id="address"
+        autocomplete="off"
+        [(ngModel)]="address"
+        class="input-primary"
+        required
+      />
+    </div>
+    <div class="input-group col-span-1">
+      <label for="birth-date">Geburtsdatum</label>
+      <input
+        type="date"
+        name="birth-date"
+        id="birth-date"
+        autocomplete="off"
+        class="input-primary py-2.25"
+        [(ngModel)]="birthDate"
+        required
+      />
+    </div>
+    <div class="input-group col-span-1">
+      <label for="gender">Geschlecht</label>
+      <input
+        type="text"
+        name="gender"
+        id="gender"
+        autocomplete="off"
+        [(ngModel)]="gender"
+        class="input-primary"
+        required
+      />
+    </div>
+    <div class="input-group col-span-1">
+      <label for="start-date">Startdatum</label>
+      <input
+        type="date"
+        name="start-date"
+        id="start-date"
+        autocomplete="off"
+        class="input-primary py-2.25"
+        [(ngModel)]="firstDay"
+        [max]="lastDay"
+        required
+      />
+    </div>
+    <div class="input-group col-span-1">
+      <label for="end-date">Enddatum</label>
+      <input
+        type="date"
+        name="end-date"
+        id="end-date"
+        autocomplete="off"
+        class="input-primary py-2.25"
+        [(ngModel)]="lastDay"
+        [min]="firstDay"
+        required
+      />
+    </div>
+    <div class="input-group">
+      <label for="job">Ausbildungsberuf</label>
+      <input
+        type="text"
+        name="job"
+        id="job"
+        autocomplete="off"
+        [(ngModel)]="jobName"
+        class="input-primary"
+        required
+      />
+    </div>
+    <div class="input-group col-start-3">
+      <button
+        class="w-full"
+        [class]="createForm.valid ? 'btn-primary' : 'btn-primary-disabled'"
+        [disabled]="!createForm.valid"
+      >
+        Hinzufügen
+      </button>
+    </div>
+  </div>
+</form>

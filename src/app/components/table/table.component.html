@@ -1,0 +1,49 @@
+<div class="table w-full">
+  <div class="table-header-group">
+    <div class="table-row">
+      <div class="table-cell-basic-lg font-medium bg-gray-50">Zeitraum</div>
+      <div class="table-cell-basic font-medium bg-gray-50">Tage</div>
+      <div class="table-cell-basic font-medium bg-gray-50"></div>
+    </div>
+  </div>
+  <div class="table-row-group">
+    <div class="table-row" *ngFor="let time of tableContent; let i = index">
+      <div
+        class="table-cell-basic-lg"
+        [ngClass]="i % 2 === 1 ? 'bg-gray-50' : 'bg-gray-200'"
+      >
+        {{ time.timespan }}
+      </div>
+      <div
+        class="table-cell-basic"
+        [ngClass]="i % 2 === 1 ? 'bg-gray-50' : 'bg-gray-200'"
+      >
+        {{ time.days }}
+      </div>
+      <div
+        class="table-cell-basic text-right text-red-600"
+        [ngClass]="i % 2 === 1 ? 'bg-gray-50' : 'bg-gray-200'"
+      >
+        Entfernen
+      </div>
+    </div>
+    <div class="table-row">
+      <div
+        class="table-cell-basic-lg font-medium"
+        [ngClass]="tableContent.length % 2 === 1 ? 'bg-gray-50' : 'bg-gray-200'"
+      >
+        Gesamt
+      </div>
+      <div
+        class="table-cell-basic"
+        [ngClass]="tableContent.length % 2 === 1 ? 'bg-gray-50' : 'bg-gray-200'"
+      >
+        {{ overallDays }}
+      </div>
+      <div
+        class="table-cell-basic"
+        [ngClass]="tableContent.length % 2 === 1 ? 'bg-gray-50' : 'bg-gray-200'"
+      ></div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ import { AddingFormComponent } from './components/adding-form/adding-form.compon
 import { AzubiViewComponent } from './components/azubi-view/azubi-view.component';
 import { TableComponent } from './components/table/table.component';
 import { AddingFormTableComponent } from './components/adding-form-table/adding-form-table.component';
+import { CalendarBasicComponent } from './components/calendar-basic/calendar-basic.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AddingFormTableComponent } from './components/adding-form-table/adding-
     AzubiViewComponent,
     TableComponent,
     AddingFormTableComponent,
+    CalendarBasicComponent,
   ],
   imports: [
     BrowserModule,

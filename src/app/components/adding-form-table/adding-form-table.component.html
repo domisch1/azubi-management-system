@@ -1,0 +1,39 @@
+<form
+  class="flex items-end xl:block gap-4 w-full mt-2 mb-6"
+  #addDays="ngForm"
+  (ngSubmit)="pushData(addDays)"
+>
+  <div>
+    <label for="first-day">Erster Urlaubstag</label>
+    <input
+      type="date"
+      name="first-day"
+      id="first-day"
+      class="input-primary"
+      [(ngModel)]="firstDay"
+      [max]="lastDay"
+      required
+    />
+  </div>
+  <div class="xl:my-4">
+    <label for="last-day">Letzter Urlaubstag</label>
+    <input
+      type="date"
+      name="last-day"
+      id="last-day"
+      class="input-primary"
+      [(ngModel)]="lastDay"
+      [min]="firstDay"
+      required
+    />
+  </div>
+  <div>
+    <button
+      class="py-3.5"
+      [class]="addDays.valid ? 'btn-primary' : 'btn-primary-disabled'"
+      [disabled]="!addDays.valid"
+    >
+      Hinzufügen
+    </button>
+  </div>
+</form>

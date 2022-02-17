@@ -1,0 +1,52 @@
+<section class="">
+  <div
+    class="relative flex justify-between pb-4 mb-14 border-b border-gray-300"
+  >
+    <div class="flex flex-col">
+      <span class="text-xl pb-2 font-medium"> {{ activeAzubi.name }} </span>
+      <span class="pb-2"> {{ activeAzubi.jobData.jobName }} </span>
+      <span class="">2. Lehrjahr</span>
+    </div>
+    <div class="flex flex-col items-end">
+      <span class="pb-2"> {{ activeAzubi.personalData.address }} </span>
+      <span class="pb-2"> {{ activeAzubi.personalData.email }} </span>
+      <span class=""> {{ activeAzubi.personalData.phoneNumber }} </span>
+    </div>
+  </div>
+  <section class="grid grid-cols-4 gap-y-10 gap-x-4">
+    <section class="col-span-4 xl:col-span-2">
+      <p class="text-lg pb-2 mb-2 border-b border-gray-300">Urlaubstage</p>
+      <p class="font-medium mt-2">Urlaub eintragen</p>
+      <app-adding-form-table
+        [triggerFunction]="'vacation'"
+        [id]="id"
+      ></app-adding-form-table>
+      <p *ngIf="activeAzubi.vacation.length === 0; else tableVacation">
+        Noch keine Urlaubstage vergeben.
+      </p>
+      <ng-template #tableVacation>
+        <app-table
+          [tableContent]="activeAzubi.vacation"
+          [overallDays]="activeAzubi.vacationDays"
+        ></app-table>
+      </ng-template>
+    </section>
+    <section class="col-span-4 xl:col-span-2">
+      <p class="text-lg pb-2 mb-2 border-b border-gray-300">Krankheitstage</p>
+      <p class="font-medium mt-2">Krankheitstage eintragen</p>
+      <app-adding-form-table
+        [triggerFunction]="'illness'"
+        [id]="id"
+      ></app-adding-form-table>
+      <p *ngIf="activeAzubi.illness.length === 0; else tableIllness">
+        Noch keine Krankheitstage vorhanden.
+      </p>
+      <ng-template #tableIllness>
+        <app-table
+          [tableContent]="activeAzubi.illness"
+          [overallDays]="activeAzubi.illnessDays"
+        ></app-table>
+      </ng-template>
+    </section>
+  </section>
+</section>

@@ -1,0 +1,32 @@
+<div class="flex flex-col justify-center h-full">
+  <div class="flex items-center justify-center h-1/6 w-full">
+    <button class="text-lg font-medium text-blue-600" (click)="beforeMonth()">
+      Vorheriger Monat
+    </button>
+    <h1 class="font-medium text-2xl mx-10">{{ convertedMonth }}</h1>
+    <button class="text-lg font-medium text-blue-600" (click)="nextMonth()">
+      Nächster Monat
+    </button>
+  </div>
+  <div class="grid grid-cols-7 items-end col-span-full row-span-auto">
+    <div class="col-span-1">Montag</div>
+    <div class="col-span-1">Dienstag</div>
+    <div class="col-span-1">Mittwoch</div>
+    <div class="col-span-1">Donnerstag</div>
+    <div class="col-span-1">Freitag</div>
+    <div class="col-span-1">Samstag</div>
+    <div class="col-span-1">Sonntag</div>
+  </div>
+  <div
+    class="grid col-span-full h-4/6 row-span-5 grid-cols-7 grid-rows-6 border border-gray-300"
+  >
+    <div
+      class="flex flex-col col-span-1 row-span-1 border border-gray-300 bg-gray-50 hover:bg-gray-200 p-2 cursor-pointer"
+      *ngFor="let day of viewMonth; let i = index"
+    >
+      <span>
+        {{ day.date | date }}
+      </span>
+    </div>
+  </div>
+</div>
