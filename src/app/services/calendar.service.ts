@@ -11,6 +11,7 @@ export class CalendarService {
   date = 1;
   year = this.today.getFullYear();
   viewMonth: any[] = [];
+  monthActually = this.month;
   convertedMonth = this.convertingService.convertMonth(this.today.getMonth());
 
   constructor(
@@ -22,6 +23,11 @@ export class CalendarService {
     this.viewMonth = [];
     for (let i = 0; i < 42; i++) {
       let fullDate = new Date(this.month + '/' + this.date + '/' + this.year);
+      if (fullDate.getMonth() + 1 !== this.month) {
+        this.date = 1;
+        this.month += 1;
+        fullDate = new Date(this.month + '/' + this.date + '/' + this.year);
+      }
       let fullDateString = this.month + '/' + this.date + '/' + this.year;
       if (i === 0 && fullDate.getDay() !== 1) {
         let monthBefore;
@@ -74,6 +80,8 @@ export class CalendarService {
             date: fullDateBefore,
             day: dayBefore,
             formattedDate: fullDateBeforeString,
+            vacation: [],
+            illness: [],
           });
         }
       }
@@ -119,7 +127,23 @@ export class CalendarService {
         });
       }
     });
-    console.log(this.viewMonth);
+    this.azubiService.azubis.forEach((azubi) => {
+      if (azubi.illness.length > 0) {
+        azubi.illness.forEach((illnessObj: any) => {
+          illnessObj.daysContainer.forEach((day: any) => {
+            this.viewMonth.forEach((date) => {
+              if (day === date.formattedDate) {
+                date.illness.push({
+                  azubi: azubi.name,
+                  days: illnessObj,
+                });
+              }
+            });
+          });
+        });
+      }
+    });
+    // console.log(this.viewMonth);
   }
   beforeMonth() {
     // YEAR SWITCH
@@ -130,8 +154,10 @@ export class CalendarService {
       this.createCalendar();
       this.month = 12;
       this.year--;
+      this.monthActually = this.month;
     } else {
       this.month--;
+      this.monthActually = this.month;
       this.convertedMonth = this.convertingService.convertMonth(this.month - 1);
       this.createCalendar();
     }
@@ -144,6 +170,7 @@ export class CalendarService {
     } else {
       this.month++;
     }
+    this.monthActually = this.month;
     this.convertedMonth = this.convertingService.convertMonth(this.month - 1);
     this.createCalendar();
   }

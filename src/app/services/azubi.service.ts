@@ -87,10 +87,38 @@ export class AzubiService {
         endDate: '01.02.2024',
         jobName: 'Fachkraft Metalltechnik',
       },
-      vacation: [],
-      illness: [],
-      vacationDays: 0,
-      illnessDays: 0,
+      vacation: [
+        {
+          timespan: '01.04.2022 - 05.04.2022',
+          days: 5,
+          daysContainer: [
+            '4/1/2022',
+            '4/2/2022',
+            '4/3/2022',
+            '4/4/2022',
+            '4/5/2022',
+          ],
+        },
+        {
+          timespan: '08.02.2022 - 10.02.2022',
+          days: 3,
+          daysContainer: ['2/8/2022', '2/9/2022', '2/10/2022'],
+        },
+      ],
+      illness: [
+        {
+          timespan: '28.02.2022 - 02.03.2022',
+          days: 2,
+          daysContainer: ['2/28/2022', '3/1/2022', '3/2/2022'],
+        },
+        {
+          timespan: '08.02.2022 - 10.02.2022',
+          days: 3,
+          daysContainer: ['2/8/2022', '2/9/2022', '2/10/2022'],
+        },
+      ],
+      vacationDays: 8,
+      illnessDays: 2,
     },
   ];
 

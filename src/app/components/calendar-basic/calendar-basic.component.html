@@ -1,32 +1,92 @@
 <div class="flex flex-col justify-center h-full">
-  <div class="flex items-center justify-center h-1/6 w-full">
-    <button class="text-lg font-medium text-blue-600" (click)="beforeMonth()">
-      Vorheriger Monat
+  <div class="flex items-center justify-end h-1/6 w-full">
+    <h1 class="font-medium text-2xl mr-4">{{ convertedMonth }}</h1>
+
+    <button
+      (click)="beforeMonth()"
+      class="flex justify-center items-center bg-gray-200 h-10 w-10 rounded-full font-medium text-lg hover:bg-gray-300 transition-all duration-100 mr-2"
+    >
+      &#60;
     </button>
-    <h1 class="font-medium text-2xl mx-10">{{ convertedMonth }}</h1>
-    <button class="text-lg font-medium text-blue-600" (click)="nextMonth()">
-      Nächster Monat
+    <button
+      (click)="nextMonth()"
+      class="flex justify-center items-center bg-gray-200 h-10 w-10 rounded-full font-medium hover:bg-gray-300 transition-all duration-100 text-lg"
+    >
+      &#62;
     </button>
   </div>
   <div class="grid grid-cols-7 items-end col-span-full row-span-auto">
-    <div class="col-span-1">Montag</div>
-    <div class="col-span-1">Dienstag</div>
-    <div class="col-span-1">Mittwoch</div>
-    <div class="col-span-1">Donnerstag</div>
-    <div class="col-span-1">Freitag</div>
-    <div class="col-span-1">Samstag</div>
-    <div class="col-span-1">Sonntag</div>
+    <div class="col-span-1">Mo</div>
+    <div class="col-span-1">Di</div>
+    <div class="col-span-1">Mi</div>
+    <div class="col-span-1">Do</div>
+    <div class="col-span-1">Fr</div>
+    <div class="col-span-1">Sa</div>
+    <div class="col-span-1">So</div>
   </div>
   <div
-    class="grid col-span-full h-4/6 row-span-5 grid-cols-7 grid-rows-6 border border-gray-300"
+    class="relative grid col-span-full h-4/6 row-span-5 grid-cols-7 grid-rows-6 border border-gray-300"
   >
     <div
-      class="flex flex-col col-span-1 row-span-1 border border-gray-300 bg-gray-50 hover:bg-gray-200 p-2 cursor-pointer"
+      class="flex max-h-24 flex-col col-span-1 row-span-1 border border-gray-300 bg-gray-50 hover:bg-gray-300 p-2 cursor-pointer overflow-hidden"
       *ngFor="let day of viewMonth; let i = index"
+      [ngClass]="
+        day.date.getMonth() + 1 === monthActually ? 'bg-gray-200' : 'bg-gray-50'
+      "
+      (click)="showDay(day)"
     >
       <span>
-        {{ day.date | date }}
+        {{ day.date | date: "shortDate":"+0200":"de" }}
       </span>
+      <span *ngIf="day.vacation.length > 0" class="text-gray-400">
+        {{
+          day.vacation.length > 1
+            ? "Urlaub: " + day.vacation.length + " Personen"
+            : "Urlaub: 1 Person"
+        }}
+      </span>
+      <span *ngIf="day.illness.length > 0" class="text-gray-400">
+        {{
+          day.illness.length > 1
+            ? "Krank: " + day.illness.length + " Personen"
+            : "Krank: 1 Person"
+        }}
+      </span>
+    </div>
+    <div
+      class="absolute flex flex-col w-full h-full bg-gray-50 p-6"
+      *ngIf="dayToggler"
+    >
+      <span (click)="dayToggler = !dayToggler" class="cursor-pointer w-min">
+        Zurück
+      </span>
+      <div class="mt-4">
+        <p class="text-lg border-b border-gray-50 mb-4">
+          {{ dayContent.date | date: "fullDate":"+0200":"de" }}
+        </p>
+        <div class="flex flex-col" *ngIf="dayContent.vacation.length > 0">
+          <span class="mb-2">Diese Azubis haben Urlaub:</span>
+          <ol>
+            <li
+              *ngFor="let azubiInfo of dayContent.vacation"
+              class="list-decimal ml-6"
+            >
+              {{ azubiInfo.azubi }}
+            </li>
+          </ol>
+        </div>
+        <div class="flex flex-col mt-4" *ngIf="dayContent.illness.length > 0">
+          <span class="mb-2">Diese Azubis sind Krank:</span>
+          <ol>
+            <li
+              *ngFor="let azubiInfo of dayContent.illness"
+              class="list-decimal ml-6"
+            >
+              {{ azubiInfo.azubi }}
+            </li>
+          </ol>
+        </div>
+      </div>
     </div>
   </div>
 </div>

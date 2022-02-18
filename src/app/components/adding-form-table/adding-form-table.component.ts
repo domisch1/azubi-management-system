@@ -38,8 +38,13 @@ export class AddingFormTableComponent implements OnInit {
       let month = mutateDay.getMonth() + 1;
       let date = mutateDay.getDate() + 1;
       let year = mutateDay.getFullYear();
-      let newDateString = month + '/' + date + '/' + year;
       let newDate = new Date(month + '/' + date + '/' + year);
+      if (newDate.getMonth() + 1 !== month) {
+        date = 1;
+        month += 1;
+        newDate = new Date(month + '/' + date + '/' + year);
+      }
+      let newDateString = month + '/' + date + '/' + year;
       days.push(newDateString.toString());
       mutateDay = newDate;
     }
