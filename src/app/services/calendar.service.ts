@@ -11,7 +11,6 @@ export class CalendarService {
   date = 1;
   year = this.today.getFullYear();
   viewMonth: any[] = [];
-  monthActually = this.month;
   convertedMonth = this.convertingService.convertMonth(this.today.getMonth());
 
   constructor(
@@ -154,24 +153,24 @@ export class CalendarService {
       this.createCalendar();
       this.month = 12;
       this.year--;
-      this.monthActually = this.month;
     } else {
       this.month--;
-      this.monthActually = this.month;
       this.convertedMonth = this.convertingService.convertMonth(this.month - 1);
       this.createCalendar();
     }
   }
   nextMonth() {
     // YEAR SWITCH
-    if (this.month === 12) {
-      this.month = 1;
-      this.year++;
-    } else {
-      this.month++;
-    }
-    this.monthActually = this.month;
+    // if (this.month === 12) {
+    //   console.log(this.month);
+    //   this.month = 1;
+    //   this.year++;
+    // } else {
+    //   this.month++;
+    // }
+    this.month++;
     this.convertedMonth = this.convertingService.convertMonth(this.month - 1);
+    console.log(this.month);
     this.createCalendar();
   }
 }

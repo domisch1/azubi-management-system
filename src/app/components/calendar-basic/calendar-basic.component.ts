@@ -16,7 +16,6 @@ export class CalendarBasicComponent implements OnInit, OnDestroy {
   year: any;
   viewMonth: any[] = [];
   convertedMonth: any;
-  monthActually: any;
   dayToggler = false;
   dayContent: any;
   constructor(
@@ -27,25 +26,29 @@ export class CalendarBasicComponent implements OnInit, OnDestroy {
     this.today = this.calendarService.today;
     this.convertedMonth = this.calendarService.convertedMonth;
     this.month = this.calendarService.month;
-    this.monthActually = this.calendarService.monthActually;
     this.date = 1;
     this.year = this.calendarService.year;
     this.calendarService.createCalendar();
     this.viewMonth = this.calendarService.viewMonth;
+    console.log(this.viewMonth[10].date.getMonth() + 1, this.month);
   }
   nextMonth() {
     this.calendarService.nextMonth();
-    this.month = this.calendarService.month;
-    this.monthActually = this.calendarService.monthActually;
+    if (this.calendarService.month === 0) {
+      this.month = 12;
+    } else {
+      this.month = this.calendarService.month;
+    }
     this.viewMonth = this.calendarService.viewMonth;
     this.convertedMonth = this.calendarService.convertedMonth;
+    console.log(this.viewMonth[10].date.getMonth() + 1, this.month);
   }
   beforeMonth() {
     this.calendarService.beforeMonth();
     this.month = this.calendarService.month;
-    this.monthActually = this.calendarService.monthActually;
     this.viewMonth = this.calendarService.viewMonth;
     this.convertedMonth = this.calendarService.convertedMonth;
+    console.log(this.viewMonth[10].date.getMonth() + 1, this.month);
   }
   ngOnDestroy(): void {
     console.log(this.calendarService.month);
